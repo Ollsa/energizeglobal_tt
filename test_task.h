@@ -4,7 +4,7 @@
 #define DEBUG
 
 #define XML_FILENAME        "test.xml"
-#define XML_START_NODE_NAME "group"
+#define XML_START_NODE_NAME "start"
 #define XML_KEY_TEXT        "text"
 #define XML_KEY_NUMERIC     "numeric"
 
