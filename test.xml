@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<group>
+        <keyword>InputSlot</keyword>
+        <default>Auto</default>
+        <text>First</text>
+        <text>222222</text>
+        <numeric>1345</numeric>
+        <numeric>-128</numeric>
+</group>
