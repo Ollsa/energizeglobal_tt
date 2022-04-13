@@ -31,7 +31,7 @@ Output: TLV File
 
 ### For run Test task use
 ```
-    ./xml_to_tlv
+    ./xml_to_tlv -i [xml_filename] -o [tlv_filename]
 ```
 
 
