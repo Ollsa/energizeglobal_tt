@@ -63,7 +63,17 @@ int main()
     memset(&tlvPull, 0, sizeof(tlvPull));
 
     fXml = fopen(XML_FILENAME, "r");
-    node = mxmlLoadFile(NULL, fXml, MXML_TEXT_CALLBACK);
+
+    if(fXml != NULL)
+    {
+        node = mxmlLoadFile(NULL, fXml, MXML_TEXT_CALLBACK);
+        fclose(fXml);
+    }
+    else
+    {
+        fprintf(stdout,"Error of readind input xml-file\n");
+        return 0;
+    }
 
     node = mxmlFindElement(node, node, XML_START_NODE_NAME, NULL, NULL,
                            MXML_DESCEND);
