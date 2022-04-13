@@ -46,3 +46,4 @@ For parsing I am using Mini-Xml library
     make
     make install
 ```
+Configure path to LD_LIBRARY_PATH for mxml lib if needed. See more https://iq.opengenus.org/set-ld-library-path/
