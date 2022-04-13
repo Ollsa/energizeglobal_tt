@@ -1,4 +1,4 @@
-#include <stdio.h>    
+#include <unistd.h>
 #include <mxml.h>
 #include "test_task.h"
 #include "tlv_pull.h"
@@ -46,23 +46,50 @@ tlv_result_t addXmlNodeToTlvPull(tlv_pull_t* pull, const unsigned char* keyword,
 *
 * @end
 *********************************************************************/
-int main()
+int main(int argc, char* argv[])
 { 
     FILE *fXml, *fTlv;
+    unsigned char *xmlFilename = NULL;
+    unsigned char *tlvFilename = "output";
     mxml_node_t *node;
     tlv_pull_t tlvPull;
     const char* name;
     unsigned char pullbuff[TLV_BUF_MAX_SIZE] = {0};
     unsigned int l = 0;
     tlv_result_t r = TLV_SUCESS;
+    int c;
 
 #ifdef DEBUG
     printf("Hello Energizeglobal!\n");
 #endif
 
+    while ((c = getopt(argc, argv, "i:o")) != -1)
+    {
+        switch (c)
+        {
+            case 'i':
+                    xmlFilename = optarg;
+                    break;
+            case 'o':
+                    tlvFilename = optarg;
+                    break;
+            default :
+                    fprintf(stdout,"Error of command arguments\n");
+                    fprintf(stdout,"Use  .\\xml_to_tlv -i [xml_file_name] -o [tlv_file_name]\n");
+            break;
+        }
+    }
+
+    if(xmlFilename == NULL)
+    {
+        fprintf(stdout,"Error of command arguments\n");
+        fprintf(stdout,"Use  .\\xml_to_tlv -i [xml_file_name] -o [tlv_file_name]\n");
+        return 0;
+    }
+
     memset(&tlvPull, 0, sizeof(tlvPull));
 
-    fXml = fopen(XML_FILENAME, "r");
+    fXml = fopen(xmlFilename, "r");
 
     if(fXml != NULL)
     {
@@ -127,7 +154,7 @@ int main()
     }
 #endif
 
-    fTlv = fopen(TLV_FILENAME, "w");
+    fTlv = fopen(tlvFilename, "w");
     for (unsigned int i = 0; i < l; ++i) fprintf(fTlv, "%02x", pullbuff[i]);
     fclose(fTlv);
 
