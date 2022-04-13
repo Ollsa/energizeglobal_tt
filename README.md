@@ -9,9 +9,9 @@ Input file example:
 
 ```
 <START>
-<text>string 1</text>
-<text>string 2</text>
-<text>string 3</text>
+<text>string1</text>
+<text>string2</text>
+<text>string3</text>
 <numeric>205011</numeric>
 <numeric>7</numeric>
 </START>
