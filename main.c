@@ -52,6 +52,7 @@ int main(int argc, char* argv[])
     unsigned char *xmlFilename = NULL;
     unsigned char *tlvFilename = "output";
     mxml_node_t *node;
+    mxml_node_t *tree;
     tlv_pull_t tlvPull;
     const char* name;
     unsigned char pullbuff[TLV_BUF_MAX_SIZE] = {0};
@@ -93,7 +94,7 @@ int main(int argc, char* argv[])
 
     if(fXml != NULL)
     {
-        node = mxmlLoadFile(NULL, fXml, MXML_TEXT_CALLBACK);
+        tree = mxmlLoadFile(NULL, fXml, MXML_TEXT_CALLBACK);
         fclose(fXml);
     }
     else
@@ -102,7 +103,7 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    node = mxmlFindElement(node, node, XML_START_NODE_NAME, NULL, NULL,
+    node = mxmlFindElement(tree, tree, XML_START_NODE_NAME, NULL, NULL,
                            MXML_DESCEND);
     while ( node != NULL )
     {
@@ -169,5 +170,6 @@ int main(int argc, char* argv[])
         fprintf(stdout,"Tlv-pull is free\n");
     }
 #endif
+    mxmlDelete(tree);
     return 0;
 }
