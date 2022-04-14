@@ -1,4 +1,4 @@
-## Test task for energizeglobal
+## Test task for Energizeglobal
 
 Write a program in "C" which should take as an input "XML" file (not nested, primitive) and convert it into a binary encoded "TLV" file (not nested).
 The tag of each XML node shows the type of data. There are two types of data allowed: numeric or text.
